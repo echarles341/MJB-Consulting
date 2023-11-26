@@ -1,3 +1,7 @@
+from fastapi import Body, FastAPI
+from fastapi.params import Body
+import requests
+import json
 from tkinter import *
 import datetime
 X = datetime.datetime.now()
@@ -5,6 +9,33 @@ print(X.strftime("%m/%d/%y    %H:%M"))
 main = Tk()
 main.geometry("700x600")
 main.title("Reservation Desk")
+
+URL = "https://jsonplaceholder.typicode.com/users"
+
+APIKEY = {'X-RapidAPI-Key': "dcc31d2418mshb50296504b9cb72p184808jsn9e45d344d8de"}
+
+response = requests.get(URL)
+
+# print("Search by email address: ")
+
+print(response.text)
+
+
+print("search by Username:")
+user = input(">")
+queryURL = URL + f"?username = {user}"
+
+response = requests.get(queryURL)
+
+print(response.text)
+
+app = FastAPI()
+
+
+@app.post("/createposts12")
+def create_new_posts(payload: dict = Body(...)):
+    print(payload)
+    return {"New_post: succesfully loaded"}
 
 
 #Heading
