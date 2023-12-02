@@ -1,7 +1,16 @@
-from fastapi import Body, FastAPI
-from fastapi.params import Body
-import requests
-import json
+#to render the template created
+from flask import Blueprint, render_template, request
+from pyexpat import model
+
+# define this file as a blueprint which contain the URL
+
+views = Blueprint('views', __name__)
+
+
+@views.route('/')
+def home():
+    return render_template("home.html")
+
 from tkinter import *
 import datetime
 X = datetime.datetime.now()
@@ -9,33 +18,6 @@ print(X.strftime("%m/%d/%y    %H:%M"))
 main = Tk()
 main.geometry("700x600")
 main.title("Reservation Desk")
-
-URL = "https://jsonplaceholder.typicode.com/users"
-
-APIKEY = {'X-RapidAPI-Key': "dcc31d2418mshb50296504b9cb72p184808jsn9e45d344d8de"}
-
-response = requests.get(URL)
-
-# print("Search by email address: ")
-
-print(response.text)
-
-
-print("search by Username:")
-user = input(">")
-queryURL = URL + f"?username = {user}"
-
-response = requests.get(queryURL)
-
-print(response.text)
-
-app = FastAPI()
-
-
-@app.post("/createposts12")
-def create_new_posts(payload: dict = Body(...)):
-    print(payload)
-    return {"New_post: succesfully loaded"}
 
 
 #Heading
@@ -156,7 +138,7 @@ Email_address_value = StringVar()
 Phone_number_value = IntVar()
 Reservation_date_value = IntVar()
 check_value = IntVar()
-#dcheck_value_2 = IntVar()
+check_value_2 = IntVar()
 
 Credit_card_number_text = Credit_card_Value.get()
 First_name_text = First_name_value.get()
