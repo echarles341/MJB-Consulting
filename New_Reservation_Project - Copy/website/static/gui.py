@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, flash
+import requests
 app = Flask(__name__)
 app.secret_key = "anew_man_2023"
 @app.route("/hello")
@@ -8,8 +9,11 @@ def base():
 
 @app.route("/greet", methods=["POST",'GET'])
 def greet():
-    flash("Hi " + str(request.form['name_input'] + ", great, welcome to our reservation desk!")
+    flash("Hi " + str(request.form['name_input']) + ", great, welcome to our reservation desk!")
     return render_template("base.html")
+
+
+
 
 from tkinter import *
 import datetime
@@ -186,4 +190,3 @@ Button(text="Submit Reservation", width="15",command = click_submit).place(x=+22
 
 
 mainloop()
-
