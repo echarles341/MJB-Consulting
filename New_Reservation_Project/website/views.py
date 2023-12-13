@@ -7,3 +7,4 @@ views = Blueprint('views', __name__)
 def home():
 #    return "test 123"
     return render_template("home.html")
+# "<h1>Test</h1>"
